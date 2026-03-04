@@ -1,0 +1,22 @@
+services:
+  visual-tests:
+    build: .
+    volumes:
+      # Persist screenshots - accessible from host
+      - ./__screenshots__:/app/__screenshots__
+      # HTML report for visual diff
+      - ./html-report:/app/html-report
+      # Test results (traces, screenshots on failure)
+      - ./test-results:/app/test-results
+      # Source files for quick iteration (read-only)
+      - ./src:/app/src:ro
+      # Storybook config
+      - ./.storybook:/app/.storybook:ro
+      # Config files
+      - ./playwright.config.ts:/app/playwright.config.ts:ro
+      - ./tsconfig.json:/app/tsconfig.json:ro
+      - ./tsconfig.node.json:/app/tsconfig.node.json:ro
+      - ./vite.config.ts:/app/vite.config.ts:ro
+    environment:
+      - CI=true
+    command: sh -c "npm run storybook -- --host 0.0.0.0 & sleep 15 && npx playwright test --project=visual"

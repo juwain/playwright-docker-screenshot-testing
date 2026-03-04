@@ -5,18 +5,32 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:visual": "docker compose up --build",
+    "test:visual:local": "playwright test --project=visual",
+    "test:visual:update": "playwright test --project=visual --update-snapshots",
+    "test:visual:approve": "playwright test --project=visual --last-failed --update-snapshots",
+    "test:visual:report": "playwright show-report html-report",
+    "test:visual:clean": "rm -rf __screenshots__/* test-results/*",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.48.0",
+    "@playwright/test": "1.48.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
     "typescript": "^5.6.3",
-    "vite": "^5.4.10"
-  }
+    "vite": "^5.4.10",
+    "storybook": "^8.3.6",
+    "@storybook/react-vite": "^8.3.6",
+    "@storybook/addon-a11y": "^8.3.6",
+    "@storybook/addon-docs": "^8.3.6",
+    "@storybook/addon-essentials": "^8.3.6"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
