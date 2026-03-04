@@ -1,0 +1,39 @@
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card--default {
+  border: 1px solid #e5e7eb;
+}
+
+.card--outlined {
+  border: 2px solid #3b82f6;
+}
+
+.card--elevated {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
