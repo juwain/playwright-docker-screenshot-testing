@@ -1,32 +1,25 @@
-import { defineConfig } from '@playwright/test';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
-  testDir: './src',
-  testMatch: '**/*.visual.test.tsx',
-
-  // Module resolution for tests
-  moduleDirectories: ['node_modules', path.resolve(__dirname, 'src')],
+  testDir: "./src",
+  testMatch: "**/*.visual.test.tsx",
 
   // Centralized screenshot storage
-  snapshotPathTemplate: '__screenshots__/{testFileDir}/{testFileName}-{arg}{ext}',
+  snapshotPathTemplate:
+    "__screenshots__/{testFileDir}/{testFileName}-{arg}{ext}",
 
   // HTML report for visual diff
   reporter: [
-    ['html', { outputFolder: 'html-report', open: 'never' }],
-    ['list'],
+    ["html", { outputFolder: "html-report", open: "never" }],
+    ["list"],
   ],
 
   // Screenshot comparison settings
   expect: {
     toHaveScreenshot: {
       maxDiffPixels: 100,
-      animations: 'disabled',
-      caret: 'hide',
+      animations: "disabled",
+      caret: "hide",
     },
     timeout: 10000,
   },
@@ -40,21 +33,21 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'visual',
+      name: "visual",
       use: {
-        browserName: 'chromium',
+        browserName: "chromium",
         viewport: { width: 1280, height: 720 },
-        screenshotMode: 'only-on-failure',
-        trace: 'retain-on-failure',
-        baseURL: 'http://localhost:6006',
+        screenshot: "only-on-failure",
+        trace: "retain-on-failure",
+        baseURL: "http://localhost:6006",
       },
     },
   ],
 
   // Storybook dev server (started in docker-compose command)
   webServer: {
-    command: 'npm run storybook -- --host 0.0.0.0',
-    url: 'http://localhost:6006',
+    command: "npm run storybook -- --host 0.0.0.0",
+    url: "http://localhost:6006",
     reuseExistingServer: true,
     timeout: 120000,
   },
